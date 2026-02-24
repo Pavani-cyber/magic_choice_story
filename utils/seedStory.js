@@ -1,198 +1,169 @@
 const mongoose = require("mongoose");
+const Story = require("../models/story");
 require("dotenv").config();
-// console.log("URI:", process.env.MONGO_URI); 
-const Story = require("../models/story.js");
-mongoose.connect(process.env.MONGO_URI)
-  .then(async () => {
 
-    console.log("MongoDB Connected for Seeding");
+mongoose.connect(process.env.MONGO_URI);
 
-    // Clear old data
-    await Story.deleteMany();
+const img = (id) => `https://picsum.photos/id/${id}/900/600`;
 
-    //story1
-    const story1 = {
-      title: "Monkey and the Magic Forest",
-      description: "A fun interactive story where kids choose the path",
-      coverImage: "https://img.freepik.com/premium-vector/happy-monkey-cartoon-playing-forest_43633-12923.jpg?semt=ais_hybrid&w=740&q=80",
-      ageGroup: "5-8 years",
-      pages: [
-        {
-          pageNumber: 1,
-          text: `Milo the monkey woke up early in the jungle feeling excited.
-He played all morning and became thirsty near a stream.`,
-          image: "https://images.unsplash.com/photo-1644352516658-7236c1677a82?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          question: "Does the monkey drink water?",
-          yesNext: 2,
-          noNext: 3
-        },
-        {
-          pageNumber: 2,
-          text: `Milo drank cool water and felt energetic.
-He saw a glowing magical banana nearby.`,
-          image: "https://pixabay.com/images/download/jimbo457-ai-generated-8674827_1920.jpg",
-          question: "Should the monkey climb a tree?",
-          yesNext: 4,
-          noNext: 5
-        },
-        {
-          pageNumber: 3,
-          text: `Milo didn’t drink water and became tired.`,
-          image: "https://pixabay.com/images/download/clker-free-vector-images-monkey-303612_1280.png", 
-          question: "Should he rest under a tree?",
-          yesNext: 4,
-          noNext: 5
-        },
-        {
-          pageNumber: 4,
-          text: "Milo learned that every choice brings a new adventure. He smiles happily.",
-          image:"https://pixabay.com/images/download/quinnbrak-ai-generated-8949402_1920.png" },
-        {
-          pageNumber: 5,
-          text: "The monkey feels weak and goes home to rest.",
-          image: "https://pixabay.com/images/download/olenchic-ai-generated-9310516_1920.jpg"
-        }
-      ]
-    };
+async function seed() {
 
+await Story.deleteMany();
 
-   //story2
-    const story2 = {
-      title: "Pirate Adventure",
-      description: "An interactive story of a young pirate seeking treasure",
-      coverImage: "https://thumbs.dreamstime.com/b/black-ship-captain-looking-telescope-young-black-female-ship-captain-uniform-standing-bow-cruise-ship-115554432.jpg",
-      ageGroup: "6-10 years",
-      pages: [
-        {
-          pageNumber: 1,
-          text: "Captain Lily spots a mysterious island from her pirate ship.",
-          image: "https://thumbs.dreamstime.com/b/black-ship-captain-looking-telescope-young-black-female-ship-captain-uniform-standing-bow-cruise-ship-115554432.jpg",
-          question: "Sail to the island?",
-          yesNext: 2,
-          noNext: 3
-        },
-        {
-          pageNumber: 2,
-          text: "She finds a treasure map leading to a cave.",
-          image: "https://img.freepik.com/premium-photo/cartoon-pirate-ship-sailing-past-mysterious-treasure-filled-island-cave_994764-209234.jpg?w=360",
-          question: "Follow the map?",
-          yesNext: 4,
-          noNext: 5
-        },
-        {
-          pageNumber: 3,
-          text: "She avoids the island but wonders what treasure she missed.",
-          image: "https://thumbs.dreamstime.com/b/pirate-island-treasure-map-adventure-exploration-hidden-riches-art-vector-design-generative-ai-lively-illustration-406803833.jpg",
-          question: "Return later?",
-          yesNext: 2,
-          noNext: 5
-        },
-        {
-          pageNumber: 4,
-          text: "She discovers gold and jewels. The crew celebrates!",
-          image: "https://media.istockphoto.com/id/1063671300/vector/treasure-cave-with-chest-gold-coins-gems-concept-art-for-computer-game-background-image-to.jpg?s=612x612&w=0&k=20&c=FigAmg7EmiTaicIXi-oF0LXRYryAegULfs89XYJXARA="
-        },
-        {
-          pageNumber: 5,
-          text: "She sails home safely, dreaming of future adventures.",
-          image: "https://img.freepik.com/free-photo/view-fantasy-pirate-ship_23-2151488535.jpg?semt=ais_user_personalization&w=740&q=80"
-        }
-      ]
-    };
+const stories = [
 
+/* ======================================================
+   STORY 1 — Monkey and the Magic Forest
+====================================================== */
+{
+title: "Monkey and the Magic Forest",
+description: "Milo the monkey explores a glowing magical jungle.",
+coverImage: img(200),
+ageGroup: "5-8 years",
+pages: [
 
-    //story3
-    const story3 = {
-      title: "Magical Forest Quest",
-      description: "A magical adventure where kids explore a forest and make smart choices",
-      coverImage: "https://m.media-amazon.com/images/I/813HtkH0M2L._UF1000,1000_QL80_.jpg",
-      ageGroup: "7-12 years",
-      pages: [
-        {
-          pageNumber: 1,
-          text: "Aarav finds a glowing map and gets transported to a magical forest.",
-          image: "https://i.ytimg.com/vi/fuMzr1lHnAU/sddefault.jpg",
-          question: "Follow the rabbit guide?",
-          yesNext: 2,
-          noNext: 3
-        },
-        {
-          pageNumber: 2,
-          text: "Three paths appear: flowers, cave, and bridge.",
-          image: "https://thumbs.dreamstime.com/b/stone-bridge-crosses-river-forest-cartoon-illustration-shows-tall-trees-green-grass-colorful-flowers-solid-brick-315507375.jpg",
-          question: "Choose flower path?",
-          yesNext: 4,
-          noNext: 5
-        },
-        {
-          pageNumber: 3,
-          text: "He meets a scared baby deer stuck in thorns.",
-          image: "https://s1.dmcdn.net/v/AcUUd1eov5KmMxB5Q/x720",
-          question: "Help the deer?",
-          yesNext: 6,
-          noNext: 7
-        },
-        {
-          pageNumber: 4,
-          text: "Flowers give him a silver key.",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ7IhXFTAsg-h-KwN_oufrbHdmoU8qu-pD7w&s",
-          question: "Continue?",
-          yesNext: 8,
-          noNext: 8
-        },
-        {
-          pageNumber: 5,
-          text: "A turtle gives him a shield in the cave.",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_nEdYErp-jJ-qgALZi-WvP2gqrxR0XgZSMQ&s",
-          question: "Continue?",
-          yesNext: 8,
-          noNext: 8
-        },
-        {
-          pageNumber: 6,
-          text: "The deer becomes a fairy and gives sparkle dust.",
-          image: "https://thumbs.dreamstime.com/b/fairy-deer-forest-fantasy-scene-magical-creatures-fairytale-woodland-vector-design-generative-ai-enchanting-setting-374502114.jpg",
-          question: "Fly to temple?",
-          yesNext: 8,
-          noNext: 8
-        },
-        {
-          pageNumber: 7,
-          text: "He walks alone and reaches the temple tired.",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm72X-I_ruWZww3puhDqjjEEWxuXtn_gBlAg&s",
-          question: "Enter?",
-          yesNext: 8,
-          noNext: 8
-        },
-        {
-          pageNumber: 8,
-          text: "A dragon guards the Crystal of Wishes.",
-          image: "https://thumbs.dreamstime.com/b/cartoon-dragon-guarding-treasure-chest-full-gold-coins-cute-red-cartoon-dragon-smiles-guarding-wooden-chest-overflowing-386463258.jpg",
-          question: "Talk peacefully?",
-          yesNext: 9,
-          noNext: 10
-        },
-        {
-          pageNumber: 9,
-          text: "The dragon becomes his friend. Friendship wins!",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8_NhN-O8Yu8W5eKoBXB6nMD7Vti8c4Jkqw&s"
-        },
-        {
-          pageNumber: 10,
-          text: "He fights bravely and becomes a hero!",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyYKG6GXG3uWkOvFxkq5GH6FuiS1ZPjjk5gA&s"
-        }
-      ]
-    };
-//insert all stories
-    await Story.insertMany([story1, story2, story3]);
+{ pageNumber:1, text:"Milo the monkey woke up as golden sunlight filled the jungle. The leaves sparkled like stars.", image:img(201), question:"Should Milo explore deeper into the forest?", yesNext:2, noNext:3 },
 
-    console.log("✅ All stories inserted successfully!");
+{ pageNumber:2, text:"He jumped happily from tree to tree and found colorful butterflies dancing around him.", image:img(202), question:"Follow the butterflies?", yesNext:4, noNext:5 },
 
-    process.exit(0);
+{ pageNumber:3, text:"He stayed near home and ate bananas peacefully, but felt a little bored.", image:img(203) },
 
-  })
-  .catch(err => {
-    console.error("❌ Error inserting data:", err);
-    process.exit(1);
-  });
+{ pageNumber:4, text:"The butterflies led him to a glowing tree with magical fruits shining like gems.", image:img(204), question:"Taste the fruit?", yesNext:6, noNext:5 },
+
+{ pageNumber:5, text:"He heard a river nearby. The water looked cool and refreshing.", image:img(205), question:"Cross the river?", yesNext:6, noNext:7 },
+
+{ pageNumber:6, text:"The fruit gave Milo special energy! He jumped higher than ever and laughed with joy.", image:img(206) },
+
+{ pageNumber:7, text:"A rainbow appeared in the sky. Milo rested and watched the sunset happily.", image:img(207) }
+
+]
+},
+
+/* ======================================================
+   STORY 2 — Jungle Guardian Quest
+====================================================== */
+{
+title:"Jungle Guardian Quest",
+description:"Help save the animals of the jungle.",
+coverImage:img(210),
+ageGroup:"7-12 years",
+pages:[
+
+{pageNumber:1,text:"You are chosen as the Jungle Guardian. Suddenly you hear animals crying for help.",image:img(211),question:"Run toward the sound?",yesNext:2,noNext:3},
+{pageNumber:2,text:"A baby deer is trapped under a fallen branch.",image:img(212),question:"Lift the branch?",yesNext:4,noNext:5},
+{pageNumber:3,text:"You patrol safely but the cries grow louder.",image:img(213),question:"Go back to help?",yesNext:2,noNext:6},
+{pageNumber:4,text:"You save the deer. All animals cheer for you!",image:img(214)},
+{pageNumber:5,text:"The storm grows stronger and you hide safely in a cave.",image:img(215)},
+{pageNumber:6,text:"Morning arrives and the jungle is peaceful again.",image:img(216)}
+
+]
+},
+
+/* ======================================================
+   STORY 3 — Magical Forest Quest
+====================================================== */
+{
+title:"Magical Forest Quest",
+description:"A glowing map leads to a hidden treasure.",
+coverImage:img(220),
+ageGroup:"7-12 years",
+pages:[
+
+{pageNumber:1,text:"You find a mysterious glowing map under your pillow.",image:img(221),question:"Follow the map?",yesNext:2,noNext:3},
+{pageNumber:2,text:"The map guides you to a deep forest where fireflies light the path.",image:img(222),question:"Enter the cave?",yesNext:4,noNext:5},
+{pageNumber:3,text:"You stay home, wondering what adventure you missed.",image:img(223)},
+{pageNumber:4,text:"Inside the cave you discover an ancient treasure chest.",image:img(224)},
+{pageNumber:5,text:"A friendly fairy appears and gives you a magic star as a gift.",image:img(225)}
+
+]
+},
+
+/* ======================================================
+   STORY 4 — Pirate Adventure
+====================================================== */
+{
+title:"Pirate Adventure",
+description:"Sail the seas and search for treasure.",
+coverImage:img(230),
+ageGroup:"6-10 years",
+pages:[
+
+{pageNumber:1,text:"Captain Leo sails across the bright blue sea with his pirate crew.",image:img(231),question:"Follow the treasure map?",yesNext:2,noNext:3},
+{pageNumber:2,text:"They reach a secret island covered with palm trees.",image:img(232),question:"Dig for treasure?",yesNext:4,noNext:5},
+{pageNumber:3,text:"A storm pushes the ship back home safely.",image:img(233)},
+{pageNumber:4,text:"Gold coins sparkle in the sand. Treasure found!",image:img(234)},
+{pageNumber:5,text:"They build a sandcastle and enjoy the sunny day.",image:img(235)}
+
+]
+},
+
+/* ======================================================
+   STORY 5 — Lost Star City
+====================================================== */
+{
+title:"Arjun and the Lost Star City",
+description:"A brave space adventure among the stars.",
+coverImage:img(240),
+ageGroup:"7-12 years",
+pages:[
+
+{pageNumber:1,text:"Arjun blasts off in his rocket toward space.",image:img(241),question:"Land on the glowing planet?",yesNext:2,noNext:3},
+{pageNumber:2,text:"He finds a city made of shining stars and friendly aliens.",image:img(242)},
+{pageNumber:3,text:"He orbits Earth and returns home safely.",image:img(243)}
+
+]
+},
+
+/* ======================================================
+   STORY 6 — Little Hero Village
+====================================================== */
+{
+title:"Little Hero Village",
+description:"A small child protects the village bravely.",
+coverImage:img(250),
+ageGroup:"6-10 years",
+pages:[
+{pageNumber:1,text:"A storm threatens the village. Everyone looks worried.",image:img(251),question:"Help them?",yesNext:2,noNext:3},
+{pageNumber:2,text:"You guide everyone to safety. They call you their hero!",image:img(252)},
+{pageNumber:3,text:"You stay home and the storm passes quietly.",image:img(253)}
+]
+},
+
+/* ======================================================
+   STORY 7 — Ocean Explorer
+====================================================== */
+{
+title:"Ocean Explorer Adventure",
+description:"Discover life under the sea.",
+coverImage:img(260),
+ageGroup:"6-10 years",
+pages:[
+{pageNumber:1,text:"You dive underwater in a small yellow submarine.",image:img(261),question:"Explore coral reef?",yesNext:2,noNext:3},
+{pageNumber:2,text:"Bright fish and turtles swim around you happily.",image:img(262)},
+{pageNumber:3,text:"You return safely to the beach.",image:img(263)}
+]
+},
+
+/* ======================================================
+   STORY 8 — Dinosaur Valley
+====================================================== */
+{
+title:"Dinosaur Valley Quest",
+description:"Travel back to the dinosaur world.",
+coverImage:img(270),
+ageGroup:"6-10 years",
+pages:[
+{pageNumber:1,text:"Your time machine sends you to dinosaur land!",image:img(271),question:"Follow the baby dinosaur?",yesNext:2,noNext:3},
+{pageNumber:2,text:"It leads you to a peaceful valley full of giant friends.",image:img(272)},
+{pageNumber:3,text:"You safely return home with amazing memories.",image:img(273)}
+]
+}
+
+];
+
+await Story.insertMany(stories);
+console.log("✅ All full stories added!");
+process.exit();
+}
+
+seed();

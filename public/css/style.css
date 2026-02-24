@@ -40,10 +40,9 @@ main {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
   color: #EDE9C7;
   margin: auto 10px;
-  /* text-shadow: 2px 2px #fff; */
 }
 .rainbow-animate {
   font-weight: bold;
