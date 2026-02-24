@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Choice Story</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="storyPage">
+   <div class="nav">
+    <h1 id="storyTitle"></h1>
+  </div>
+  <h1 id="storyTitle"></h1>
+
+  <div class="story-box">
+    <img id="storyImage" />
+    <p id="storyText"></p>
+    <div class="voice-controls">
+
+  <button id="playBtn" class="voice-btn">▶️</button>
+  <button id="pauseBtn" class="voice-btn">⏸️</button>
+  <button id="stopBtn" class="voice-btn">⏹️</button>
+
+  <label class="speed-box">
+    Speed
+    <input type="range" id="speedRange" min="0.5" max="1.5" step="0.1" value="0.9">
+  </label>
+</div>
+
+    <div id="questionBox"></div>
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+      <button id="returnHomeBtn" style="display:none;">Return Home</button>
+    </div>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="bgMusic" src="assets/images/sounds/bg-music.mp3" loop></audio>
+  <audio id="clickSound" src="assets/images/sounds/click.mp3"></audio>
+  <audio id="yesSound" src="assets/images/sounds/yes.mp3"></audio>
+  <audio id="noSound" src="assets/images/sounds/no.mp3"></audio>
+  <script src="js/story.js"></script>
+</body>
+</html>
