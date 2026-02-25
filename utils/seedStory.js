@@ -16,27 +16,24 @@ async function seed() {
     {
       title: "Monkey Magic Jungle",
       description: "Milo explores a glowing jungle full of surprises.",
-      coverImage: u("1520962922320-2038eebab146"),
+      coverImage: "https://res.cloudinary.com/detq8ltdi/image/upload/v1772028109/monkey1_eizvhp.jpg",
       ageGroup: "5-8 years",
       pages: [
-        {pageNumber:1,text:"Milo the monkey woke up to golden sunlight in the jungle.",image:u("1501706362039-c6b2a7a1d0f2"),question:"Climb the tallest tree?",yesNext:2,noNext:3},
-        {pageNumber:2,text:"From the top he saw a glowing forest far away.",image:u("1500530855697-b586d89ba3ee"),question:"Jump toward the glow?",yesNext:4,noNext:5},
-        {pageNumber:3,text:"He stayed near home eating bananas happily.",image:u("1528825871115-3581a5387919")},
-        {pageNumber:4,text:"Butterflies guided Milo deeper into the forest.",image:u("1470770903676-69b98201ea1c"),question:"Follow them?",yesNext:6,noNext:5},
-        {pageNumber:5,text:"He heard a river flowing softly.",image:u("1502082553048-f009c37129b9"),question:"Cross the river?",yesNext:6,noNext:7},
-        {pageNumber:6,text:"A magic fruit gave Milo super jumping powers!",image:u("1501004318641-b39e6451bec6")},
-        {pageNumber:7,text:"He leaped across trees like a superhero.",image:u("1501785888041-af3ef285b470")},
-        {pageNumber:8,text:"Suddenly a baby bird needed help.",image:u("1444464666168-49d633b86797"),question:"Help the bird?",yesNext:9,noNext:10},
-        {pageNumber:9,text:"The bird thanked him with a shiny feather.",image:u("1500534314209-a25ddb2bd429")},
-        {pageNumber:10,text:"Rain started pouring heavily.",image:u("1500375592092-40eb2168fd21"),question:"Hide in cave?",yesNext:11,noNext:12},
-        {pageNumber:11,text:"Inside the cave he found sparkling crystals.",image:u("1519681393784-d120267933ba")},
-        {pageNumber:12,text:"At sunset Milo returned home smiling after a magical day.",image:u("1472214103451-9374bd1c798e")}
+        {pageNumber:1,text:"Milo the monkey woke up to golden sunlight in the jungle.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028185/monkey2_xx5fby.jpg",question:"Climb the tallest tree?",yesNext:2,noNext:3},
+        {pageNumber:2,text:"From the top he saw a glowing forest far away.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028185/monkey2_xx5fby.jpg",question:"Jump toward the glow?",yesNext:4,noNext:5},
+        {pageNumber:3,text:"He stayed near home eating bananas happily.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028252/monkey4_ej8tmc.jpg"},
+        {pageNumber:4,text:"Butterflies guided Milo deeper into the forest.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028296/monkey5_i5jfdt.jpg",question:"Follow them?",yesNext:6,noNext:5},
+        {pageNumber:5,text:"He heard a river flowing softly.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028330/monkey6_aywvyz.jpg",question:"Cross the river?",yesNext:6,noNext:7},
+        {pageNumber:6,text:"A magic fruit gave Milo super jumping powers!",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028371/monkey7_fx3mme.jpg"},
+        {pageNumber:7,text:"He leaped across trees like a superhero.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028409/monkey8_cimn57.jpg"},
+        {pageNumber:8,text:"Suddenly a baby bird needed help.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028441/monkey9_btlyex.jpg",question:"Help the bird?",yesNext:9,noNext:10},
+        {pageNumber:9,text:"The bird thanked him with a shiny feather.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028479/monkey9_irlswx.jpg"},
+        {pageNumber:10,text:"Rain started pouring heavily.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028522/monkey10_wqftlv.jpg",question:"Hide in cave?",yesNext:11,noNext:12},
+        {pageNumber:11,text:"Inside the cave he found sparkling crystals.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028558/monkey11_ln0ads.jpg"},
+        {pageNumber:12,text:"At sunset Milo returned home smiling after a magical day.",image:"https://res.cloudinary.com/detq8ltdi/image/upload/v1772028185/monkey2_xx5fby.jpg"}
       ]
     },
-
-    /* ======================================================
-       STORY 2 — Pirate Treasure Hunt
-    ====================================================== */
+//2
     {
       title:"Pirate Treasure Hunt",
       description:"Sail the sea and search for hidden treasure.",
@@ -57,10 +54,7 @@ async function seed() {
         {pageNumber:12,text:"Leo became the bravest pirate captain ever.",image:u("1500534314209-a25ddb2bd429")}
       ]
     },
-
-    /* ======================================================
-       STORY 3 — Ocean Explorer
-    ====================================================== */
+//3
     {
       title:"Ocean Explorer",
       description:"Discover life under the sea.",
