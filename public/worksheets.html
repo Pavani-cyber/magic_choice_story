@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Story Worksheets</title>
+  <link rel="stylesheet" href="css/worksheet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="topbar">
+  <h1>📚 worksheets</h1>
+</header>
+
+<div class="grid" id="storyGrid"></div>
+
+<!-- Preview Modal -->
+<div id="previewModal" class="modal hidden">
+  <div class="sheet" id="worksheetSheet"></div>
+
+  <div class="actions">
+    <button onclick="window.print()">🖨 Print</button>
+    <button onclick="downloadWorksheetPDF()">⬇️ Download PDF</button>
+    <button onclick="closePreview()">Close</button>
+  </div>
+</div>
+
+<!-- html2pdf for client-side PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script type="module" src="js/worksheets.app.js"></script>
+</body>
+</html>
