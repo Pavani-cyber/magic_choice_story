@@ -1,0 +1,464 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+}
+
+body{
+  background:#f2f5fb;
+  min-height:100vh;
+}
+
+.topbar{
+  background:linear-gradient(135deg,#6366f1,#4f46e5);
+  color:white;
+  text-align:center;
+  padding:18px;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+.grid{
+  padding:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  transition:.25s;
+  text-align:center;
+  padding-bottom:15px;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+
+.card h3{
+  padding:10px;
+  font-size:17px;
+  color:#333;
+}
+
+.card button{
+  background:#10b981;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card button:hover{
+  background:#059669;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow:auto;
+  padding:20px;
+  z-index:999;
+}
+
+.hidden{
+  display:none;
+}
+
+.sheet{
+  width:210mm;
+  min-height:297mm;
+  background:white;
+  padding:25mm;
+  border-radius:8px;
+  box-shadow:0 0 25px rgba(0,0,0,.25);
+}
+
+.sheet h1{
+  text-align:center;
+  margin-bottom:15px;
+  font-size:26px;
+  color:#4f46e5;
+}
+
+.sheet h3{
+  margin-top:22px;
+  margin-bottom:10px;
+  color:#222;
+  background:#eef2ff;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:16px;
+}
+
+
+.sheet p{
+  margin:6px 0;
+  font-size:14px;
+}
+
+.line{
+  border-bottom:1px solid #000;
+  height:20px;
+  margin:6px 0 10px 0;
+}
+
+
+.draw-box{
+  height:200px;
+  border:2px dashed #bbb;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+.actions{
+  margin-top:15px;
+  display:flex;
+  gap:12px;
+}
+
+.actions button{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+}
+
+.actions button:first-child{
+  background:#4f46e5;
+  color:white;
+}
+
+.actions button:last-child{
+  background:#ef4444;
+  color:white;
+}
+
+@media print{
+
+  body *{
+    visibility:hidden;
+  }
+
+  .sheet, .sheet *{
+    visibility:visible;
+  }
+
+  .sheet{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+}
+
+.quiz-box{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  width:90%;
+  max-width:700px;
+  margin-top:20px;
+}
+
+.quiz-q{
+  margin-bottom:15px;
+}
+
+.quiz-q label{
+  display:block;
+  margin:5px 0;
+  cursor:pointer;
+}
+
+.score-text{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.cert-holder{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+
+ /* Certificate styles */
+
+.ppt-cert{
+  position:relative;
+
+  width:11.69in;
+  height:8.27in;
+
+  background:white;
+  font-family:"Times New Roman", serif;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  padding:70px;
+  overflow:hidden;
+}
+
+
+/* soft teddy background */
+.cert-bg{
+  position:absolute;
+  inset:0;
+
+  background:url("https://images.unsplash.com/photo-1596464716127-f2a82984de30");
+  background-size:cover;
+  background-position:center;
+
+  opacity:0.08;
+}
+
+
+/* decorative border */
+.cert-border{
+  position:absolute;
+  inset:25px;
+  border:8px solid #e3b341;
+}
+
+
+/* content above bg */
+.ppt-cert > *{
+  position:relative;
+  z-index:2;
+}
+
+
+/* title */
+.cert-title{
+  font-size:48px;
+  font-weight:bold;
+  letter-spacing:3px;
+  margin-bottom:20px;
+}
+
+
+/* type */
+.cert-type{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+
+/* text */
+.cert-text{
+  font-size:20px;
+}
+
+
+/* student name */
+.cert-name{
+  font-size:52px;
+  font-weight:800;
+  margin:18px 0;
+  text-decoration:none; /* remove underline */
+  font-family: 'Dancing Script', cursive; /* cursive styling for kid-friendly look */
+  color:#b45309; /* warm brown */
+  text-shadow: 0 2px 0 rgba(255,255,255,0.6), 0 6px 18px rgba(0,0,0,0.06);
+  padding:6px 12px;
+  border-radius:8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,235,0.6));
+}
+
+
+/* story */
+.story-name{
+  font-size:22px;
+  margin-top:8px;
+}
+
+
+/* score */
+.score{
+  margin-top:10px;
+}
+
+
+/* signature */
+.sign-row{
+  margin-top:60px;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  padding-right:80px;
+}
+
+
+/* buttons */
+.cert-controls{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+}
+
+
+/* print clean */
+@media print{
+  .cert-controls{ display:none; }
+
+  body *{ visibility:hidden; }
+
+  /* Ensure the certificate and all its children are visible for printing */
+  .ppt-cert, .ppt-cert *{
+    visibility:visible !important;
+  }
+
+  .ppt-cert{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    box-shadow:none;
+    overflow:visible !important;
+  }
+}
+
+.ppt-cert h1{ font-size:48px; margin:6px 0; color:#92400e; }
+.ppt-cert h2{ font-size:28px; margin:8px 0; color:#4f46e5; }
+.ppt-cert .name{ font-size:36px; font-weight:700; color:#1f2937; margin:12px 0; text-decoration:none; }
+.ppt-cert .meta{ font-size:14px; color:#444; margin-top:8px }
+.ppt-cert .logo-badge{ display:flex; align-items:center; gap:10px; position:absolute; left:0.6in; top:0.6in }
+.ppt-cert .logo-badge .mark{ width:64px;height:64px;border-radius:12px;background:#fde68a;display:flex;align-items:center;justify-content:center;font-weight:900;color:#92400e }
+.ppt-cert .logo-badge .company{ font-size:14px; color:#4f46e5; font-weight:800 }
+
+.ppt-cert .founder{ position:absolute; right:0.8in; bottom:0.8in; font-size:12px; color:#333 }
+
+.ppt-cert svg.teddy{ position:absolute; right:0.8in; top:1.2in; width:220px; opacity:0.12 }
+
+/* Styled alert / name input modal */
+.styled-alert-modal{ position:fixed; inset:0; display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5); z-index:10000 }
+.styled-alert-box{ background:linear-gradient(180deg,#fff,#fffbeb); padding:20px; border-radius:12px; width:360px; box-shadow:0 8px 24px rgba(0,0,0,.18); text-align:center; border:6px solid #fde68a }
+.styled-alert-box .message{ font-size:16px; color:#333; margin-bottom:12px }
+.styled-input{ width:100%; padding:10px 12px; border-radius:10px; border:2px dashed #f3f4f6; font-size:16px; outline:none; box-shadow:inset 0 2px 6px rgba(0,0,0,.03) }
+.styled-input:focus{ border-color:#f59e0b; box-shadow:0 4px 14px rgba(245,158,11,.12) }
+.styled-actions{ display:flex; gap:10px; justify-content:center; margin-top:12px }
+.styled-btn{ padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:800 }
+.styled-btn.primary{ background:#4f46e5; color:white }
+.styled-btn.secondary{ background:#10b981; color:white }
+.styled-btn.ghost{ background:transparent; border:2px solid #e5e7eb; color:#374151 }
+
+/* Certificate button visuals */
+.cert-controls .cert-btn{ padding:12px 16px; font-size:15px; border-radius:12px; box-shadow:0 6px 18px rgba(16,185,129,.12); transition:transform .15s, box-shadow .15s }
+.cert-controls .cert-btn.print{ background:#6d28d9 }
+.cert-controls .cert-btn.download{ background:#059669 }
+.cert-controls .cert-btn.close{ background:#dc2626 }
+.cert-controls .cert-btn:hover{ transform:translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,.14) }
+
+/* decorative inner border */
+.ppt-cert::before{ content:''; position:absolute; inset:18px; border-radius:12px; border:6px dashed rgba(79,70,229,.06); pointer-events:none }
+
+/* modal box holding certificate */
+.cert-modal-box{
+  background:transparent;
+  padding:18px;
+  border-radius:10px;
+  max-width:980px;
+  width:95%;
+  text-align:center;
+}
+
+.cert-controls{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.cert-btn{
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  color:white;
+}
+.cert-btn.print{ background:#4f46e5 }
+.cert-btn.download{ background:#10b981 }
+.cert-btn.close{ background:#ef4444 }
+
+/* ensure certificate scales nicely on small screens */
+@media (max-width:600px){
+  .ppt-cert{ aspect-ratio: auto; height:auto; padding:18px; }
+  .ppt-cert .inner{ padding:6px }
+  .ppt-cert h1{ font-size:28px }
+  .ppt-cert .name{ font-size:22px }
+}
+
+.certificate h1{
+  font-size:40px;
+  margin-bottom:25px;
+}
+
+.certificate h2{
+  font-size:26px;
+  margin:20px 0;
+}
+
+.certificate .name{
+  font-size:28px;
+  font-weight:bold;
+  margin:20px 0;
+  text-decoration:underline;
+}
+
+/* small buttons inside cards */
+.ws-btn{
+  background:#4f46e5;
+  color:white;
+  padding:8px 10px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* styled alert overrides */
+#styledAlert .modal{
+  align-items:center;
+  justify-content:center;
+}
+
+/* certificate print rules */
+@media print{
+  body *{ visibility:hidden; }
+  .certificate, .certificate *, .ppt-cert, .ppt-cert *{ visibility:visible; }
+  .certificate, .ppt-cert{ position:absolute; left:0; top:0; width:100%; box-shadow:none; overflow:visible !important; }
+}
