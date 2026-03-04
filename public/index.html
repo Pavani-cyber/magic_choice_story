@@ -8,9 +8,24 @@
 </head>
 <body>
   <div class="nav">
-    <a class ="work" href="/worksheets.html">Worksheets</a>
-    <h1><i class="fa-solid fa-book-open"></i> &nbsp;Magic Choice Stories </h1>
-    <a class="done" href="/workDone">Your Progress</a>
+    <div class="nav-left">
+      <a class="work" href="/worksheets.html">Worksheets</a>
+      <a class="done">Your Progress</a>
+    </div>
+    <h1><i class="fa-solid fa-book-open"></i> &nbsp;Magic Choice Stories</h1>
+    <div class="nav-right">
+      <a class="login-btn" href="/login">Login/SignIn</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu hidden" id="mobileMenu">
+    <a class="mobile-nav-link" href="/worksheets.html">Worksheets</a>
+    <a class="mobile-nav-link" href="/workDone">Your Progress</a>
+    <a class="mobile-nav-link" href="/login">Login/SignIn</a>
   </div>
   <p class="rainbow-animate">Choose a story and start your adventure!</p>
 
@@ -20,6 +35,19 @@
 <div class="foot">
   <p class="footer"> &copy; --magic_choice_stories-- &nbsp; &nbsp; &nbsp; &nbsp; 2026</p>
 </div>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+  </script>
   <script src="js/index.js"></script>
 </body>
 </html>

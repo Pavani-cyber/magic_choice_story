@@ -21,7 +21,7 @@ function renderGrid() {
       <h3>${story.title}</h3>
 
       <div class="card-actions">
-        <button class="ws-btn" onclick="generateWorksheet(${i})">
+        <button class="ws-btn" onclick="showWorksheetOptions(${i})">
           Worksheet
         </button>
 
@@ -33,6 +33,11 @@ function renderGrid() {
 
     grid.appendChild(card);
   });
+}
+
+function showWorksheetOptions(i) {
+  currentIndex = i;
+  generateWorksheet(i);
 }
 
 function generateWorksheet(i) {
@@ -74,21 +79,42 @@ function generateWorksheet(i) {
     <div class="draw-box"></div>
 
     <div class="actions">
-      <button onclick="window.print()">🖨 Print</button>
-      <button onclick="downloadWorksheetPDF()">⬇ Download PDF</button>
+      <button onclick="window.print()">🖨️ Print</button>
+      <button onclick="downloadWorksheetPDF()">⬇️ Download</button>
       <button id="takeQuizBtn" onclick="startQuiz()">📝 Take Quiz</button>
-      <button id="showCertBtn" style="margin-left:8px;" disabled>🎖 Show Certificate</button>
+      <button id="showCertBtn" onclick="showCertificateOption()" style="display:none;">🎖️ Show Certificate</button>
+      <button onclick="closePreview()">✕ Close</button>
     </div>
   `;
 
   previewModal.classList.remove('hidden');
 }
 
+function handlePrint() {
+  window.print();
+}
+
+function handleDownload() {
+  downloadWorksheetPDF();
+}
+
+function handleTakeQuiz() {
+  startQuiz();
+}
+
+function showCertificateOption() {
+  if (lastScore !== null && lastScore >= 50) {
+    askStudentName(name => {
+      openCertificate(name);
+    });
+  } else {
+    showAlert('Take and pass the quiz first (50%+) to get a certificate');
+  }
+}
 
 function downloadWorksheetPDF() {
   html2pdf().from(sheet).save();
 }
-
 
 function closePreview() {
   previewModal.classList.add('hidden');
@@ -355,3 +381,8 @@ window.startQuiz = startQuiz;
 window.submitQuiz = submitQuiz;
 window.closePreview = closePreview;
 window.downloadWorksheetPDF = downloadWorksheetPDF;
+window.showWorksheetOptions = showWorksheetOptions;
+window.showCertificateOption = showCertificateOption;
+window.openCertificate = openCertificate;
+window.showAlert = showAlert;
+window.askStudentName = askStudentName;

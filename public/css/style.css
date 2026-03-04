@@ -15,25 +15,168 @@ main {
   height: 4rem;
   width: 100%;
   position: relative;
-   top: 0;
+  top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 0 40px;
 }
+
+.nav-left {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-right: auto;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #EDE9C7;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+.mobile-menu {
+  display: none;
+  background-color: #65463E;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 0;
+  padding: 10px 0;
+  z-index: 999;
+  animation: slideDown 0.3s ease;
+}
+
+.mobile-menu.hidden {
+  display: none !important;
+}
+
+.mobile-menu:not(.hidden) {
+  display: flex;
+}
+
+.mobile-nav-link {
+  color: #EDE9C7;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(237, 233, 199, 0.2);
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-left: 40px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 20px;
+  }
+
+  .nav-left {
+    display: none;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav h1 {
+    font-size: 1.4rem;
+  }
+}
+
 .work{
   color: #EDE9C7;
-  margin-right:5rem;
   text-decoration: none;
   font-size: 1.2rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  margin-left: 3rem;
 }
+
+.work:hover{
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 .done{
   color: #EDE9C7;
-  margin-left:5rem;
   text-decoration: none;
   font-size: 1.2rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
+
+.done:hover{
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.login-btn{
+  color: #EDE9C7;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 2px solid #EDE9C7;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: transparent;
+  margin-right: 3rem;
+}
+
+.login-btn:hover{
+  background: #EDE9C7;
+  color: #65463E;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 .footer{
   margin:0 ;
   color: #EDE9C7;

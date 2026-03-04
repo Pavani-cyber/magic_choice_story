@@ -6,18 +6,61 @@
 }
 
 body{
-  background:#f2f5fb;
+  background:#EDE9C7;
   min-height:100vh;
 }
 
 .topbar{
-  background:linear-gradient(135deg,#6366f1,#4f46e5);
-  color:white;
-  text-align:center;
-  padding:18px;
+  background:#65463E;
+  color:#EDE9C7;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 30px;
   font-size:22px;
   font-weight:600;
   letter-spacing:.5px;
+  position:relative;
+}
+
+.topbar h1{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  margin:0;
+  font-size:26px;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:3rem;
+  align-items:center;
+}
+
+.nav-btn{
+  color:#EDE9C7;
+  text-decoration:none;
+  font-size:1rem;
+  font-weight:600;
+  transition:all 0.3s ease;
+  cursor:pointer;
+}
+
+.nav-btn:hover{
+  transform:scale(1.08);
+}
+
+.home-btn{
+  color:#EDE9C7;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:600;
+  transition:all 0.3s ease;
+  cursor:pointer;
+}
+
+.home-btn:hover{
+  transform:scale(1.05);
 }
 
 .grid{
@@ -135,25 +178,35 @@ body{
   margin-top:15px;
   display:flex;
   gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 .actions button{
-  padding:10px 16px;
+  padding:12px 18px;
   border:none;
   border-radius:8px;
   cursor:pointer;
   font-size:14px;
   font-weight:600;
-}
-
-.actions button:first-child{
+  transition:all 0.2s ease;
   background:#4f46e5;
   color:white;
 }
 
+.actions button:hover{
+  background:#4338ca;
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(79,70,229,0.3);
+}
+
 .actions button:last-child{
   background:#ef4444;
-  color:white;
+}
+
+.actions button:last-child:hover{
+  background:#dc2626;
+  box-shadow:0 4px 12px rgba(239,68,68,0.3);
 }
 
 @media print{
@@ -461,4 +514,69 @@ body{
   body *{ visibility:hidden; }
   .certificate, .certificate *, .ppt-cert, .ppt-cert *{ visibility:visible; }
   .certificate, .ppt-cert{ position:absolute; left:0; top:0; width:100%; box-shadow:none; overflow:visible !important; }
+}
+
+/* Options Menu Styles */
+.options-menu {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.options-menu h2 {
+  font-size: 24px;
+  color: #4f46e5;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.option-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #4f46e5;
+  color: white;
+}
+
+.option-btn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+.option-btn.close-btn {
+  background: #ef4444;
+  margin-top: 16px;
+}
+
+.option-btn.close-btn:hover {
+  background: #dc2626;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
 }

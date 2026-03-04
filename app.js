@@ -8,9 +8,6 @@ const app = express(); //  CREATE APP FIRST
 // Connect to MongoDB
 connectDB();
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "public")));
