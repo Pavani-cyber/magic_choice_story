@@ -14,11 +14,51 @@
   <div class="nav-buttons">
     <a href="index.html" class="nav-btn">Home</a>
     <a href="story.html" class="nav-btn"> Your Work</a>
+    <a href="#" id="authLink" class="nav-btn">Login</a>
   </div>
   <h1>📚 Worksheets</h1>
 </header>
+<script>
+  // manage login/logout link
+  function updateAuthLink() {
+    const link = document.getElementById('authLink');
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      link.textContent = 'Logout';
+      link.onclick = () => { localStorage.removeItem('authToken'); window.location.reload(); };
+    } else {
+      link.textContent = 'Login';
+      link.onclick = () => { window.location.href = '/login.html'; };
+    }
+  }
+  document.addEventListener('DOMContentLoaded', updateAuthLink);
+</script>
 
 <div class="grid" id="storyGrid"></div>
+
+<!-- Premium Modal -->
+<div id="premiumModal" class="modal hidden">
+  <div class="premium-content">
+    <h2>Premium Access for <span id="premiumTitle"></span></h2>
+    <p>Unlock the full experience for just <strong></strong> per story.</p>
+    <ul>
+      <li>Downloadable/printable worksheet</li>
+      <li>Interactive quiz</li>
+      <li>Certificate on passing the quiz</li>
+    </ul>
+    <p>Pay using UPI (Razorpay) to the following ID and scan the QR below:</p>
+    <p><strong>UPI ID: </strong><span id="upiId">your-upi@bank</span></p>
+    <!-- QR code will be generated dynamically from the UPI ID -->
+    <div class="qr-box">
+      <img id="premiumQr" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="UPI QR code" class="qr-code" />
+      <p class="qr-caption">Scan to pay ₹29</p>
+    </div>
+    <div class="actions">
+      <button onclick="startRazorpay()" class="premium-btn">Pay ₹29</button>
+      <button onclick="closePremium()">Close</button>
+    </div>
+  </div>
+</div>
 
 <!-- Preview Modal -->
 <div id="previewModal" class="modal hidden">
@@ -27,6 +67,8 @@
 
 <!-- html2pdf for client-side PDF generation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<!-- razorpay checkout script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script type="module" src="js/worksheets.app.js"></script>
 </body>
 </html>
