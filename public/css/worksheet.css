@@ -2,24 +2,26 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:'Segoe UI', Arial, sans-serif;
 }
 
 body{
+  font-family:'Segoe UI',Arial,sans-serif;
   background:#EDE9C7;
   min-height:100vh;
 }
 
+
+/* ===== TOPBAR ===== */
+
 .topbar{
   background:#65463E;
   color:#EDE9C7;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding:18px 30px;
-  font-size:22px;
-  font-weight:600;
-  letter-spacing:.5px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
   position:relative;
 }
 
@@ -27,46 +29,36 @@ body{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  margin:0;
   font-size:26px;
 }
 
 .nav-buttons{
   display:flex;
-  gap:3rem;
-  align-items:center;
+  gap:2rem;
 }
 
-.nav-btn{
+.nav-btn,.home-btn{
   color:#EDE9C7;
   text-decoration:none;
-  font-size:1rem;
   font-weight:600;
-  transition:all 0.3s ease;
   cursor:pointer;
+  transition:.25s;
 }
 
-.nav-btn:hover{
+.nav-btn:hover,
+.home-btn:hover{
   transform:scale(1.08);
 }
 
-.home-btn{
-  color:#EDE9C7;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:600;
-  transition:all 0.3s ease;
-  cursor:pointer;
-}
 
-.home-btn:hover{
-  transform:scale(1.05);
-}
+/* ===== STORY GRID ===== */
 
 .grid{
   padding:30px;
+
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
   gap:25px;
 }
 
@@ -75,9 +67,8 @@ body{
   border-radius:18px;
   overflow:hidden;
   box-shadow:0 8px 18px rgba(0,0,0,.08);
-  transition:.25s;
   text-align:center;
-  padding-bottom:15px;
+  transition:.25s;
 }
 
 .card:hover{
@@ -97,28 +88,40 @@ body{
   color:#333;
 }
 
-.card button{
-  background:#10b981;
+
+/* ===== CARD BUTTONS ===== */
+
+.card-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding-bottom:15px;
+}
+
+.ws-btn{
+  background:#fff;
+  color:#000;
   border:none;
-  padding:10px 14px;
-  border-radius:8px;
-  color:white;
-  font-size:14px;
+  border-radius:0.7rem;
   cursor:pointer;
+  font-weight:600;
   transition:.2s;
 }
 
-.card button:hover{
-  background:#059669;
+.ws-btn:hover{
+  background:#f0f0f0;
 }
+
+
+/* ===== MODAL ===== */
 
 .modal{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.55);
   display:flex;
-  flex-direction:column;
-  align-items:center;
+  align-items:flex-start;
+  justify-content:center;
   overflow:auto;
   padding:20px;
   z-index:999;
@@ -127,6 +130,9 @@ body{
 .hidden{
   display:none;
 }
+
+
+/* ===== WORKSHEET ===== */
 
 .sheet{
   width:210mm;
@@ -139,21 +145,18 @@ body{
 
 .sheet h1{
   text-align:center;
-  margin-bottom:15px;
   font-size:26px;
   color:#4f46e5;
+  margin-bottom:15px;
 }
 
 .sheet h3{
-  margin-top:22px;
-  margin-bottom:10px;
-  color:#222;
+  margin-top:20px;
   background:#eef2ff;
   padding:6px 10px;
   border-radius:6px;
   font-size:16px;
 }
-
 
 .sheet p{
   margin:6px 0;
@@ -161,11 +164,10 @@ body{
 }
 
 .line{
-  border-bottom:1px solid #000;
+  border-bottom:1px solid black;
   height:20px;
-  margin:6px 0 10px 0;
+  margin:6px 0 10px;
 }
-
 
 .draw-box{
   height:200px;
@@ -174,11 +176,14 @@ body{
   margin-top:10px;
 }
 
+
+/* ===== ACTION BUTTONS ===== */
+
 .actions{
-  margin-top:15px;
+  margin-top:20px;
   display:flex;
-  gap:12px;
   flex-wrap:wrap;
+  gap:10px;
   justify-content:center;
 }
 
@@ -186,18 +191,15 @@ body{
   padding:12px 18px;
   border:none;
   border-radius:8px;
-  cursor:pointer;
-  font-size:14px;
   font-weight:600;
-  transition:all 0.2s ease;
+  cursor:pointer;
   background:#4f46e5;
   color:white;
+  transition:.2s;
 }
 
 .actions button:hover{
   background:#4338ca;
-  transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(79,70,229,0.3);
 }
 
 .actions button:last-child{
@@ -206,27 +208,10 @@ body{
 
 .actions button:last-child:hover{
   background:#dc2626;
-  box-shadow:0 4px 12px rgba(239,68,68,0.3);
 }
 
-@media print{
 
-  body *{
-    visibility:hidden;
-  }
-
-  .sheet, .sheet *{
-    visibility:visible;
-  }
-
-  .sheet{
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    box-shadow:none;
-  }
-}
+/* ===== QUIZ ===== */
 
 .quiz-box{
   background:white;
@@ -234,7 +219,7 @@ body{
   border-radius:12px;
   width:90%;
   max-width:700px;
-  margin-top:20px;
+  margin:auto;
 }
 
 .quiz-q{
@@ -252,6 +237,94 @@ body{
   font-weight:bold;
   margin-top:15px;
 }
+/* NAME ALERT BOX */
+
+.name-box{
+
+  width:400px;
+  margin:60px auto;
+  background:white;
+  padding:30px;
+
+  border-radius:12px;
+  text-align:center;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+.name-box h2{
+  margin-bottom:20px;
+  color:#333;
+}
+
+.name-box input{
+
+  width:80%;
+  padding:10px;
+  font-size:16px;
+
+  border-radius:6px;
+  border:1px solid #ccc;
+
+  margin-bottom:20px;
+}
+
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+.cert-controls button:nth-child(1){
+
+  background:#2196F3;
+  color:white;
+
+}
+
+.cert-controls button:nth-child(2){
+
+  background:#4CAF50;
+  color:white;
+
+}
+
+.cert-controls button:nth-child(3){
+
+  background:#f44336;
+  color:white;
+
+}
+
+.cert-controls button:hover{
+
+  transform:scale(1.05);
+
+}
+.cert-controls{
+
+  margin-top:20px;
+  display:flex;
+  gap:15px;
+  justify-content:center;
+
+}
+
+.cert-controls button{
+
+  padding:10px 20px;
+  font-size:15px;
+
+  border:none;
+  border-radius:6px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+/* ===== CERTIFICATE MODAL ===== */
 
 .cert-holder{
   position:fixed;
@@ -264,189 +337,159 @@ body{
 }
 
 
- /* Certificate styles */
+/* ===== MAGIC CHOICE STORIES CERTIFICATE ===== */
 
 .ppt-cert{
-  position:relative;
 
   width:11.69in;
   height:8.27in;
 
-  background:white;
-  font-family:"Times New Roman", serif;
+  background:linear-gradient(135deg,#FFF9A6,#FFE066,#FFD43B);
+
+  padding:70px;
+
+  text-align:center;
+
+  font-family:"Times New Roman",serif;
+
+  position:relative;
 
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  text-align:center;
+  justify-content:flex-start;
 
-  padding:70px;
-  overflow:hidden;
 }
 
 
-/* soft teddy background */
-.cert-bg{
-  position:absolute;
-  inset:0;
+/* CERTIFICATE BORDER */
 
-  background:url("https://images.unsplash.com/photo-1596464716127-f2a82984de30");
-  background-size:cover;
-  background-position:center;
-
-  opacity:0.08;
-}
-
-/* premium access styles */
-.price-tag{
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:#f59e0b;
-  color:#fff;
-  padding:4px 8px;
-  border-radius:6px;
-  font-size:13px;
-  font-weight:600;
-}
-
-.premium-btn{
-  background:#f97316;
-}
-.premium-btn:hover{
-  background:#ea580c;
-}
-
-.premium-content{
-  background:white;
-  padding:20px 30px;
-  border-radius:12px;
-  max-width:400px;
-  width:100%;
-  text-align:center;
-}
-
-.premium-content h2{
-  margin-bottom:15px;
-}
-
-.premium-content ul{
-  text-align:left;
-  margin:10px 0 15px 0;
-  padding-left:20px;
-}
-
-.qr-box{
-  margin:12px 0;
-}
-.qr-box img.qr-code{
-  width:180px;
-  height:180px;
-  border:2px solid #333;
-  border-radius:8px;
-  background:#fafafa;
-}
-.qr-caption{
-  margin-top:6px;
-  font-size:14px;
-  color:#555;
-}
-
-
-
-/* decorative border */
 .cert-border{
   position:absolute;
   inset:25px;
-  border:8px solid #e3b341;
+  border:10px solid #facc15;
+  border-radius:12px;
 }
 
 
-/* content above bg */
-.ppt-cert > *{
-  position:relative;
-  z-index:2;
-}
+/* TITLE AT TOP */
 
-
-/* title */
 .cert-title{
-  font-size:48px;
+  font-size:50px;
   font-weight:bold;
-  letter-spacing:3px;
-  margin-bottom:20px;
+  color:#92400e;
+  margin-bottom:30px;
 }
 
 
-/* type */
-.cert-type{
-  font-size:30px;
-  margin-bottom:20px;
-}
+/* SUBTEXT */
 
-
-/* text */
 .cert-text{
-  font-size:20px;
-}
-
-
-/* student name */
-.cert-name{
-  font-size:52px;
-  font-weight:800;
-  margin:18px 0;
-  text-decoration:none; /* remove underline */
-  font-family: 'Dancing Script', cursive; /* cursive styling for kid-friendly look */
-  color:#b45309; /* warm brown */
-  text-shadow: 0 2px 0 rgba(255,255,255,0.6), 0 6px 18px rgba(0,0,0,0.06);
-  padding:6px 12px;
-  border-radius:8px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,235,0.6));
-}
-
-
-/* story */
-.story-name{
   font-size:22px;
-  margin-top:8px;
+  margin-top:20px;
 }
 
 
-/* score */
+/* STUDENT NAME (HIGHLIGHTED) */
+
+.cert-name{
+
+  font-size:60px;
+
+  font-family:'Dancing Script',cursive;
+
+  color:#b45309;
+
+  background:white;
+
+  padding:12px 35px;
+
+  border-radius:12px;
+
+  margin:25px 0;
+
+  border:3px solid #facc15;
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+
+}
+
+
+/* STORY NAME */
+
+.story-name{
+  font-size:24px;
+  font-weight:bold;
+}
+
+
+/* SCORE */
+
 .score{
   margin-top:10px;
+  font-size:18px;
 }
 
 
-/* signature */
-.sign-row{
-  margin-top:60px;
-  width:100%;
-  display:flex;
-  justify-content:flex-end;
-  padding-right:80px;
+/* FOUNDER */
+
+.founder{
+  margin-top:40px;
+  font-size:16px;
 }
 
 
-/* buttons */
+/* DECORATIVE STARS */
+
+.ppt-cert::after{
+  content:"⭐ ⭐ ⭐ ⭐ ⭐";
+  position:absolute;
+  bottom:30px;
+  font-size:28px;
+}
+
+
+/* ===== CERTIFICATE BUTTONS ===== */
+
 .cert-controls{
-  margin-top:12px;
+  margin-top:15px;
   display:flex;
   gap:10px;
 }
 
+.cert-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  color:white;
+  font-weight:700;
+}
 
-/* print clean */
+.cert-btn.print{
+  background:#4f46e5;
+}
+
+.cert-btn.download{
+  background:#10b981;
+}
+
+.cert-btn.close{
+  background:#ef4444;
+}
+
+
+/* ===== PRINT RULES ===== */
+
 @media print{
-  .cert-controls{ display:none; }
 
-  body *{ visibility:hidden; }
+  body *{
+    visibility:hidden;
+  }
 
-  /* Ensure the certificate and all its children are visible for printing */
-  .ppt-cert, .ppt-cert *{
-    visibility:visible !important;
+  .ppt-cert,
+  .ppt-cert *{
+    visibility:visible;
   }
 
   .ppt-cert{
@@ -455,184 +498,31 @@ body{
     top:0;
     width:100%;
     box-shadow:none;
-    overflow:visible !important;
   }
+
+  .cert-controls{
+    display:none;
+  }
+
 }
 
-.ppt-cert h1{ font-size:48px; margin:6px 0; color:#92400e; }
-.ppt-cert h2{ font-size:28px; margin:8px 0; color:#4f46e5; }
-.ppt-cert .name{ font-size:36px; font-weight:700; color:#1f2937; margin:12px 0; text-decoration:none; }
-.ppt-cert .meta{ font-size:14px; color:#444; margin-top:8px }
-.ppt-cert .logo-badge{ display:flex; align-items:center; gap:10px; position:absolute; left:0.6in; top:0.6in }
-.ppt-cert .logo-badge .mark{ width:64px;height:64px;border-radius:12px;background:#fde68a;display:flex;align-items:center;justify-content:center;font-weight:900;color:#92400e }
-.ppt-cert .logo-badge .company{ font-size:14px; color:#4f46e5; font-weight:800 }
 
-.ppt-cert .founder{ position:absolute; right:0.8in; bottom:0.8in; font-size:12px; color:#333 }
+/* ===== MOBILE ===== */
 
-.ppt-cert svg.teddy{ position:absolute; right:0.8in; top:1.2in; width:220px; opacity:0.12 }
-
-/* Styled alert / name input modal */
-.styled-alert-modal{ position:fixed; inset:0; display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5); z-index:10000 }
-.styled-alert-box{ background:linear-gradient(180deg,#fff,#fffbeb); padding:20px; border-radius:12px; width:360px; box-shadow:0 8px 24px rgba(0,0,0,.18); text-align:center; border:6px solid #fde68a }
-.styled-alert-box .message{ font-size:16px; color:#333; margin-bottom:12px }
-.styled-input{ width:100%; padding:10px 12px; border-radius:10px; border:2px dashed #f3f4f6; font-size:16px; outline:none; box-shadow:inset 0 2px 6px rgba(0,0,0,.03) }
-.styled-input:focus{ border-color:#f59e0b; box-shadow:0 4px 14px rgba(245,158,11,.12) }
-.styled-actions{ display:flex; gap:10px; justify-content:center; margin-top:12px }
-.styled-btn{ padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:800 }
-.styled-btn.primary{ background:#4f46e5; color:white }
-.styled-btn.secondary{ background:#10b981; color:white }
-.styled-btn.ghost{ background:transparent; border:2px solid #e5e7eb; color:#374151 }
-
-/* Certificate button visuals */
-.cert-controls .cert-btn{ padding:12px 16px; font-size:15px; border-radius:12px; box-shadow:0 6px 18px rgba(16,185,129,.12); transition:transform .15s, box-shadow .15s }
-.cert-controls .cert-btn.print{ background:#6d28d9 }
-.cert-controls .cert-btn.download{ background:#059669 }
-.cert-controls .cert-btn.close{ background:#dc2626 }
-.cert-controls .cert-btn:hover{ transform:translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,.14) }
-
-/* decorative inner border */
-.ppt-cert::before{ content:''; position:absolute; inset:18px; border-radius:12px; border:6px dashed rgba(79,70,229,.06); pointer-events:none }
-
-/* modal box holding certificate */
-.cert-modal-box{
-  background:transparent;
-  padding:18px;
-  border-radius:10px;
-  max-width:980px;
-  width:95%;
-  text-align:center;
-}
-
-.cert-controls{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  margin-top:12px;
-  flex-wrap:wrap;
-}
-
-.cert-btn{
-  padding:10px 14px;
-  border-radius:8px;
-  border:none;
-  cursor:pointer;
-  font-weight:700;
-  color:white;
-}
-.cert-btn.print{ background:#4f46e5 }
-.cert-btn.download{ background:#10b981 }
-.cert-btn.close{ background:#ef4444 }
-
-/* ensure certificate scales nicely on small screens */
 @media (max-width:600px){
-  .ppt-cert{ aspect-ratio: auto; height:auto; padding:18px; }
-  .ppt-cert .inner{ padding:6px }
-  .ppt-cert h1{ font-size:28px }
-  .ppt-cert .name{ font-size:22px }
-}
 
-.certificate h1{
-  font-size:40px;
-  margin-bottom:25px;
-}
-
-.certificate h2{
-  font-size:26px;
-  margin:20px 0;
-}
-
-.certificate .name{
-  font-size:28px;
-  font-weight:bold;
-  margin:20px 0;
-  text-decoration:underline;
-}
-
-/* small buttons inside cards */
-.ws-btn{
-  background:#4f46e5;
-  color:white;
-  padding:8px 10px;
-  border-radius:8px;
-  border:none;
-  cursor:pointer;
-  font-weight:700;
-}
-
-/* styled alert overrides */
-#styledAlert .modal{
-  align-items:center;
-  justify-content:center;
-}
-
-/* certificate print rules */
-@media print{
-  body *{ visibility:hidden; }
-  .certificate, .certificate *, .ppt-cert, .ppt-cert *{ visibility:visible; }
-  .certificate, .ppt-cert{ position:absolute; left:0; top:0; width:100%; box-shadow:none; overflow:visible !important; }
-}
-
-/* Options Menu Styles */
-.options-menu {
-  background: white;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  .ppt-cert{
+    width:95%;
+    height:auto;
+    padding:25px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .cert-title{
+    font-size:30px;
   }
-}
 
-.options-menu h2 {
-  font-size: 24px;
-  color: #4f46e5;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
+  .cert-name{
+    font-size:28px;
+  }
 
-.option-btn {
-  display: block;
-  width: 100%;
-  padding: 14px 16px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: #4f46e5;
-  color: white;
-}
-
-.option-btn:hover {
-  background: #4338ca;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
-}
-
-.option-btn:active {
-  transform: translateY(0);
-}
-
-.option-btn.close-btn {
-  background: #ef4444;
-  margin-top: 16px;
-}
-
-.option-btn.close-btn:hover {
-  background: #dc2626;
-  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
 }
