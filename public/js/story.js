@@ -1,16 +1,20 @@
+//  Get story ID from URL
 const urlParams = new URLSearchParams(window.location.search);
 const storyId = urlParams.get("id");
 
+//  Audio elements
 const bgMusic = document.getElementById("bgMusic");
 const clickSound = document.getElementById("clickSound");
 const yesSound = document.getElementById("yesSound");
 const noSound = document.getElementById("noSound");
 
-bgMusic.volume = 0.2;
-bgMusic.play().catch(() => {}); // ignore autoplay error
+// Background music
+if (bgMusic) {
+  bgMusic.volume = 0.2;
+  bgMusic.play().catch(() => {});
+}
 
-let story;
-
+//  DOM elements
 const storyText = document.getElementById("storyText");
 const storyImage = document.getElementById("storyImage");
 
@@ -19,39 +23,43 @@ const pauseBtn = document.getElementById("pauseBtn");
 const stopBtn = document.getElementById("stopBtn");
 const speedRange = document.getElementById("speedRange");
 
+let story;
 let speech = null;
 let voices = [];
 let isPaused = false;
-/* Load voices */
+
+// ==================  SPEECH ==================
+
+// Load voices
 function loadVoices() {
   voices = speechSynthesis.getVoices();
 }
 speechSynthesis.onvoiceschanged = loadVoices;
-/* Choose kid-like voice */
+
+// Choose child-like voice
 function getChildVoice() {
   return voices.find(v =>
     v.name.toLowerCase().includes("female") ||
-    v.name.toLowerCase().includes("zira") ||
-    v.name.toLowerCase().includes("google uk english female")
+    v.name.toLowerCase().includes("zira")
   );
 }
-/* PLAY */
+
+// Play speech
 function playSpeech() {
   const text = storyText.innerText;
   if (!text) return;
-  // resume if paused
+
   if (isPaused) {
     speechSynthesis.resume();
     isPaused = false;
     return;
   }
-  // stop previous
+
   speechSynthesis.cancel();
 
   speech = new SpeechSynthesisUtterance(text);
-
-  speech.pitch = 1.8;              // child voice
-  speech.rate = speedRange.value;  // slider speed
+  speech.pitch = 1.8;
+  speech.rate = speedRange?.value || 1;
   speech.volume = 1;
 
   const voice = getChildVoice();
@@ -59,25 +67,33 @@ function playSpeech() {
 
   speechSynthesis.speak(speech);
 }
-/* PAUSE */
+
+// Pause
 function pauseSpeech() {
   speechSynthesis.pause();
   isPaused = true;
 }
-/* STOP */
+
+// Stop
 function stopSpeech() {
   speechSynthesis.cancel();
   isPaused = false;
 }
-/* Speed control */
-speedRange.oninput = () => {
-  if (speech) speech.rate = speedRange.value;
-};
-/* Buttons */
-playBtn.onclick = playSpeech;
-pauseBtn.onclick = pauseSpeech;
-stopBtn.onclick = stopSpeech;
-//fetch
+
+// Speed control
+if (speedRange) {
+  speedRange.oninput = () => {
+    if (speech) speech.rate = speedRange.value;
+  };
+}
+
+// Buttons
+playBtn && (playBtn.onclick = playSpeech);
+pauseBtn && (pauseBtn.onclick = pauseSpeech);
+stopBtn && (stopBtn.onclick = stopSpeech);
+
+// ==================  FETCH STORY ==================
+
 fetch(`/api/stories/${storyId}`)
   .then(res => res.json())
   .then(data => {
@@ -87,8 +103,13 @@ fetch(`/api/stories/${storyId}`)
   })
   .catch(err => console.error(err));
 
+// ==================  SCENE CHANGE ==================
+
 function changeScene(newImg, newText) {
+  if (!storyImage || !storyText) return;
+
   storyImage.classList.add("fade-out");
+
   setTimeout(() => {
     storyImage.src = newImg;
     storyText.textContent = newText;
@@ -99,11 +120,13 @@ function changeScene(newImg, newText) {
     setTimeout(() => {
       storyImage.classList.remove("animate");
     }, 500);
-
   }, 300);
 }
 
+// ==================  PAGE LOGIC ==================
+
 function showPage(pageNumber) {
+  if (!story) return;
 
   const page = story.pages.find(p => p.pageNumber === pageNumber);
   if (!page) return;
@@ -112,12 +135,14 @@ function showPage(pageNumber) {
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
   const returnHomeBtn = document.getElementById("returnHomeBtn");
-  /* Change scene */
-    stopSpeech();
+
+  // Stop narration before switching
+  stopSpeech();
+
+  // Change scene
   changeScene(page.image, page.text);
-  /*  Auto narration */
-  // setTimeout(playSpeech, 400);
-  /* QUESTION PAGE */
+
+  // ==================  QUESTION ==================
   if (page.question) {
 
     questionBox.textContent = page.question;
@@ -127,19 +152,20 @@ function showPage(pageNumber) {
     returnHomeBtn.style.display = "none";
 
     yesBtn.onclick = () => {
-      clickSound.play();
-      yesSound.play();
+      clickSound?.play();
+      yesSound?.play();
       showPage(page.yesNext);
     };
 
     noBtn.onclick = () => {
-      clickSound.play();
-      noSound.play();
+      clickSound?.play();
+      noSound?.play();
       showPage(page.noNext);
     };
 
   }
 
+  // ==================  END ==================
   else {
 
     questionBox.textContent = "The End!";
@@ -148,8 +174,9 @@ function showPage(pageNumber) {
     noBtn.style.display = "none";
     returnHomeBtn.style.display = "inline-block";
 
+    //  FIXED BUTTON
     returnHomeBtn.onclick = () => {
-      window.location.href = "/";
+      window.location.href = "/index.html";
     };
   }
 }

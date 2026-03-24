@@ -25,3 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Failed to load stories:", err));
 });
+
+window.onload = async function () {
+    const res = await fetch("/checkAuth");
+    const data = await res.json();
+
+    if (data.loggedIn) {
+        document.getElementById("logoutBtn").style.display = "block";
+    }
+};
+
+function logout() {
+    window.location.href = "/logout";
+}

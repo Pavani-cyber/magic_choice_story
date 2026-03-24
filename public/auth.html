@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auth Popup</title>
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <h1> Register The Page Before Entering </h1>
+  <p>Click the button below to login or register.</p><br><br>
+<button onclick="openModal()">Login / Register</button>
+
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <!-- Toggle buttons -->
+    <div class="tabs">
+      <button onclick="showLogin()">Login</button>
+      <button onclick="showRegister()">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" action="/login" method="POST">
+      <h2>Login</h2>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" action="/register" method="POST">
+      <h2>Register</h2>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Register</button>
+    </form>
+
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

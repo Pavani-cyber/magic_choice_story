@@ -1,28 +1,53 @@
 const express = require("express");
 const path = require("path");
-const connectDB = require("./init/index"); // make sure file name is db.js
+const session = require("express-session");
+const connectDB = require("./init/index");
+
 const storyRoutes = require("./routes/storyRoutes");
+const authRoutes = require("./routes/auth");
 
-const app = express(); //  CREATE APP FIRST
+const app = express();
 
-// Connect to MongoDB
+//  Connect to MongoDB
 connectDB();
 
-// middleware
-app.use(express.json()); // parse application/json
+//  Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Serve static frontend files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(session({
+    secret: "secretkey",
+    resave: false,
+    saveUninitialized: false
+}));
 
-// API Routes
-app.use("/api/stories", storyRoutes);
+//  Authentication Middleware
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    }
+    return res.redirect("/auth.html"); // redirect if not logged in
+}
 
-// Home route
+//  Default Route (IMPORTANT)
 app.get("/", (req, res) => {
-  res.send(" Magic Choice Stories Server is Running!");
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, "public", "story.html")); // after login
+    } else {
+        res.sendFile(path.join(__dirname, "public", "auth.html")); // before login
+    }
 });
 
-// Start server
+//  Auth Routes (login, register, logout)
+app.use("/", authRoutes);
+
+//  Protected Story Routes
+app.use("/api/stories", isAuthenticated, storyRoutes);
+
+// Serve Static Files (KEEP THIS LAST)
+app.use(express.static(path.join(__dirname, "public")));
+
+//  Start Server
 app.listen(9091, () => {
-  console.log(" Server running on port 9091");
+    console.log("Server running on port 9091");
 });

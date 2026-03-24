@@ -83,6 +83,7 @@ main {
 }
 
 .mobile-nav-link {
+  background-color: #65463E;
   color: #EDE9C7;
   text-decoration: none;
   font-size: 1.1rem;
@@ -129,7 +130,19 @@ main {
     font-size: 1.4rem;
   }
 }
-
+#logoutBtn{
+  background-color: #65463E;
+  color: #EDE9C7;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+#logoutBtn:hover{
+  opacity: 1;
+  transform: scale(1.05);
+}
 .work{
   color: #EDE9C7;
   text-decoration: none;
